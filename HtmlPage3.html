@@ -1,0 +1,126 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link href="Mysheet.css" rel="stylesheet" />
+    <script src="angular.min.js"></script>
+    <script src="JavaScript2.js"></script>
+    <script type="text/javascript">
+        function loadNumber() {
+            alert(document.getElementById('typeOfOperation').value);
+        }
+        </script>
+        </head>
+<body>
+
+    <div ng-app="myCalculator">
+        <div ng-controller="myCalcController" ng-init="loadControls();">
+            
+            <table class="table">
+                <tr>
+                    <td>  Select Type: </td>
+                    <td>
+                        <select id="typeOfOperation" ng-model="operation">
+                            <option value="0"> Select Type </option>
+                            <option value="+"> Addition </option>
+                            <option value="-"> Subtraction </option>
+                            <option value="*"> Multiplication </option>
+                            <option value="/"> Division </option>
+                        </select>
+                    </td>
+                    <td >
+                        # of Sums/Row:
+                    </td>
+                    <td >
+                        <input type="text" ng-model="numberOfSums" size="2" /> <br />
+                    </td>
+                    
+                    <td >
+                        <input type="button" value="Load Numbers" ng-click="loadNumbers();" /> <br />
+                    </td>
+                </tr>
+            </table>
+            <table>
+                <tr>
+                    <td>
+                        <table>
+                            <tr ng-repeat="actual in firstRowNumbers">
+                                <td class="td"> {{ actual.firstNo}} </td>
+                                <td> {{ operation }} </td>
+                                <td class="td"> {{ actual.secondNo }} </td>
+                                <td> = </td>
+                                <td>
+                                    <input type="number" size="3" ng-bind="result2" ng-dblclick ="fncCheck();" />                                           
+                                </td>
+                                <td>
+                                    <input type="checkbox" checked ="{{ blnResult }}"  />
+                                </td>
+                                <td ng-show="blnShow">
+                                    <input size="3" ng-bind="result1" ng-value="{{ actual.secondNo + actual.firstNo}}" />
+                                    </td>
+                                <td ng-class="result1 = result2 ? 'correctstyle' : 'wrongstyle'"> </td>  
+                                <!--<td ng-style="{'background-color': {{ result1 }} == {{result2 }}? 'green' : 'red'}"> </td> -->
+                            </tr>
+                        </table>
+                     </td>
+                    <td colspan="50" />
+                    <td>
+                        <table>
+                            <tr ng-repeat="actual in secondRowNumbers">
+                                <td class="td"> {{ actual.firstNo}} </td>
+                                <td> {{ operation }} </td>
+                                <td class="td"> {{ actual.secondNo }} </td>
+                                <td> = </td>
+                                <td><input type="text" id="txtResult" size="3" ng-model="result" /> </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td colspan="50"/>
+                    <td >
+                        <table>
+                            <tr ng-repeat="actual in thirdRowNumbers">
+                                <td class="td"> {{ actual.firstNo}} </td>
+                                <td> {{ operation }} </td>
+                                <td class="td"> {{ actual.secondNo }} </td>
+                                <td> = </td>
+                                <td><input type="text" id="txtResult" size="3" ng-model="result" /> </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td colspan="50" />
+                    <td>
+                        <table>
+                            <tr ng-repeat="actual in fourthRowNumbers">
+                                <td class="td"> {{ actual.firstNo}} </td>
+                                <td> {{ operation }} </td>
+                                <td class="td"> {{ actual.secondNo }} </td>
+                                <td> = </td>
+                                <td><input type="text" id="txtResult" size="3" ng-model="result" /> </td>
+                            </tr>
+                        </table>
+                    </td>
+                    <td colspan="50" />
+                    <td>
+                        <table>
+                            <tr ng-repeat="actual in fifthRowNumbers">
+                                <td class="td"> {{ actual.firstNo}} </td>
+                                <td> {{ operation }} </td>
+                                <td class="td"> {{ actual.secondNo }} </td>
+                                <td> = </td>
+                                <td><input type="text" id="txtResult" size="3" ng-model="result" /> </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <!--<tr>
+                    <td colspan="2000">
+                        <input type="button" value="Validate Result" ng-click="validateResult(operation);" />
+                    </td>
+                </tr>-->
+            </table>
+            
+        </div>
+
+    </div>
+</body>
+</html>
