@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title></title>
+        <script src="angular.min.js"></script> 
+        <script src="JavaScript2.js"></script>
+        <script type="text/javascript">
+
+            function loadNumbers() {
+                document.getElementById('firstNumber').innerText = 10;
+                document.getElementById('secondNumber').innerText = 10;
+            }
+
+            function validateResult() {
+                var result = document.getElementById('resultBox').value;
+                var num1 = document.getElementById('firstNumber').innerText;
+                var num2 = document.getElementById('secondNumber').innerText;
+                alert(result);
+                var x = +num1 + +num2;
+                alert(x);
+                
+                if (result == +num1 + +num2)
+                    alert("Success");
+                else
+                    alert("Check Again");
+            }
+
+        </script>
+    </head>
+
+    <body ng-app="myModule2">
+        <!-- // <reference path="angular.min.js" /> Copy this line in the Script file -->
+        <link href="Mysheet.css" rel="stylesheet" />
+        <div ng-controller="myController2">
+            <table>
+                <tr>
+                    <td>
+                        Select Type:
+                    </td>
+                    <td>
+                        <select>
+                            <option value="0"> Select Type </option>
+                            <option value="+"> Addition </option>
+                            <option value="-"> Subtraction </option>
+                            <option value="*"> Multiplication </option>
+                        </select>
+                    </td>
+                    <td>
+                        <input type="button" value="Load" onclick=" return loadNumbers()" /> <br />
+                    </td> 
+                </tr>
+             </table>
+
+             <table>
+                <tr ng-repeat="number in numbers">
+                    <td>
+                        <label id="firstNumber"> {{ number.firstNumber }} </label> +
+                    </td>
+                    
+                    <td>
+                        <label id="secondNumber"> {{ number.firstNumber }} </label> =
+                    </td>
+                                 
+                    <td>
+                        <input type="text" id="resultBox" value="" max="2" size="2" />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <input type="button" value="Validate" onclick="validateResult();" />
+                    </td>
+                </tr>
+            </table>
+        
+        </div>
+    </body>
+</html>

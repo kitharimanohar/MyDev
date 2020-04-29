@@ -1,0 +1,93 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="angular.min.js"></script>
+    <script src="JavaScript1.js"></script>
+</head>
+<body ng-app="myModule">
+
+    <!-- // <reference path="angular.min.js" /> Copy this line in the Script file -->
+    <link href="Mysheet.css" rel="stylesheet" />
+    <div ng-controller="myController" ng-init="type='Addition'" >
+        
+      
+        Number of rows to display: <input type="number" step="1" min="0" max="5" ng-model="rowsToDisplay" />
+
+        Sort by: <select ng-model="sortColumn">
+                        <option value="+name"> Name Asc </option>
+                        <option value="-name"> Name Desc </option>
+                        <option value="+salary"> Salary Asc </option>
+                        <option value="-salary"> Salary Desc </option>
+                    </select>
+                        
+                
+
+        <table border="1">
+               <thead>
+                   <tr>
+                       <th ng-click="sortData('name')"> Name <div ng-class="getSortClass('name')"></div> </th>
+                       <th ng-click="sortData('dateofBirth')"> Date of Birth <div ng-class="getSortClass('dateofBirth')"> </div></th>
+                       <th ng-click="sortData('gender')"> Gender <div ng-class="getSortClass('gender')"></div></th>
+                       <th ng-click="sortData('salary')"> Salary <div ng-class="getSortClass('salary')"></div></th>
+                       <th ng-click="sortData('salary')"> Salary <div ng-class="getSortClass('salary')"></div></th>
+                   </tr>
+               </thead> 
+            <tbody>
+                <tr ng-repeat="employee in employees | orderBy:sortColumn:reverseSort |limitTo:rowsToDisplay">
+                    <td> {{employee.name | uppercase}} </td>
+                    <td> {{employee.dateOfBirth | date:"MM-dd-yyyy"}} </td>
+                    <td> {{employee.gender | lowercase}} </td>
+                    <td> {{employee.salary | number:2 }} </td>
+                    <td> {{employee.salary | currency }} </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <br /> <br />
+        
+        <input type="text" ng-model="searchText.name" placeholder="Search Name" />  
+        <input type="text" ng-model="searchText.city" placeholder="Search City" />
+        <input type="checkbox" ng-model="exactMatch" /> Exact Match
+        
+        <table border="1">
+            <thead>
+                <tr>
+                    <th ng-click="sortData('name')"> Name <div ng-class="getSortClass('name')"></div> </th>
+                    <th ng-click="sortData('dateofBirth')"> Date of Birth <div ng-class="getSortClass('dateofBirth')"> </div></th>
+                    <th ng-click="sortData('gender')"> Gender <div ng-class="getSortClass('gender')"></div></th>
+                    <th ng-click="sortData('salary')"> Salary <div ng-class="getSortClass('salary')"></div></th>
+                    <th ng-click="sortData('city')"> City <div ng-class="getSortClass('city')"></div></th>
+                    <th ng-click="sortData('state')"> State <div ng-class="getSortClass('state')"></div></th>
+                </tr>
+            </thead>
+            <tbody>
+                <!--<tr ng-repeat="employee in employees1 | filter:searchText:exactMatch">-->
+                
+                <tr ng-repeat="employee in employees1">
+                    <td> {{employee.name }} </td>
+                    <td> {{employee.dateOfBirth | date:"MM-dd-yyyy" }} </td>
+                    <td> {{employee.gender | gender | uppercase }} </td>
+                    <td> {{employee.salary | number:2 }} </td>
+                    <td> {{employee.city }} </td>
+                    <td> {{employee.state | state }} </td> 
+                </tr>
+
+            </tbody>
+        </table>
+
+       
+
+     </div>
+
+    <!--
+    ng-app
+    ng-controller
+    ng-model
+    ng-bind
+    ng-init
+    ng-
+    -->
+    
+</body>
+</html>
